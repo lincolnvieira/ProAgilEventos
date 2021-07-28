@@ -8,7 +8,7 @@ namespace ProAgil.Domain
         public int? EventoId { get; set; }
         public int? PalestanteId { get; set; }
 
-        public Evento Evento { get; set; }
-        public Palestrante Palestante { get; set; }
+        public Evento Evento { get; }
+        public Palestrante Palestante { get; }
     }
 }

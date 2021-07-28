@@ -9,8 +9,8 @@ using ProAgil.Repository;
 namespace ProAgil.Repository.Migrations
 {
     [DbContext(typeof(ProAgilContext))]
-    [Migration("20210723005628_init")]
-    partial class init
+    [Migration("20210727235137_recriar")]
+    partial class recriar
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -110,21 +110,23 @@ namespace ProAgil.Repository.Migrations
 
                     b.Property<int?>("PalestanteId");
 
+                    b.Property<int?>("PalestranteId");
+
                     b.Property<string>("Url");
 
                     b.HasKey("RedeSocialId");
 
                     b.HasIndex("EventoId");
 
-                    b.HasIndex("PalestanteId");
+                    b.HasIndex("PalestranteId");
 
-                    b.ToTable("RedeSocials");
+                    b.ToTable("RedeSociais");
                 });
 
             modelBuilder.Entity("ProAgil.Domain.Lote", b =>
                 {
-                    b.HasOne("ProAgil.Domain.Evento", "Evento")
-                        .WithMany("Lote")
+                    b.HasOne("ProAgil.Domain.Evento")
+                        .WithMany("Lotes")
                         .HasForeignKey("EventoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -144,13 +146,13 @@ namespace ProAgil.Repository.Migrations
 
             modelBuilder.Entity("ProAgil.Domain.RedeSocial", b =>
                 {
-                    b.HasOne("ProAgil.Domain.Evento", "Evento")
+                    b.HasOne("ProAgil.Domain.Evento")
                         .WithMany("RedeSociais")
                         .HasForeignKey("EventoId");
 
-                    b.HasOne("ProAgil.Domain.Palestrante", "Palestante")
+                    b.HasOne("ProAgil.Domain.Palestrante")
                         .WithMany("RedeSociais")
-                        .HasForeignKey("PalestanteId");
+                        .HasForeignKey("PalestranteId");
                 });
 #pragma warning restore 612, 618
         }

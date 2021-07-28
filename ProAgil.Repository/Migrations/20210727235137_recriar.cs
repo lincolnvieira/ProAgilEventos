@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProAgil.Repository.Migrations
 {
-    public partial class init : Migration
+    public partial class recriar : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -92,7 +92,7 @@ namespace ProAgil.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RedeSocials",
+                name: "RedeSociais",
                 columns: table => new
                 {
                     RedeSocialId = table.Column<int>(nullable: false)
@@ -100,20 +100,21 @@ namespace ProAgil.Repository.Migrations
                     Nome = table.Column<string>(nullable: true),
                     Url = table.Column<string>(nullable: true),
                     EventoId = table.Column<int>(nullable: true),
-                    PalestanteId = table.Column<int>(nullable: true)
+                    PalestanteId = table.Column<int>(nullable: true),
+                    PalestranteId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RedeSocials", x => x.RedeSocialId);
+                    table.PrimaryKey("PK_RedeSociais", x => x.RedeSocialId);
                     table.ForeignKey(
-                        name: "FK_RedeSocials_Eventos_EventoId",
+                        name: "FK_RedeSociais_Eventos_EventoId",
                         column: x => x.EventoId,
                         principalTable: "Eventos",
                         principalColumn: "EventoId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_RedeSocials_Palestrantes_PalestanteId",
-                        column: x => x.PalestanteId,
+                        name: "FK_RedeSociais_Palestrantes_PalestranteId",
+                        column: x => x.PalestranteId,
                         principalTable: "Palestrantes",
                         principalColumn: "PalestranteId",
                         onDelete: ReferentialAction.Restrict);
@@ -130,14 +131,14 @@ namespace ProAgil.Repository.Migrations
                 column: "PalestranteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RedeSocials_EventoId",
-                table: "RedeSocials",
+                name: "IX_RedeSociais_EventoId",
+                table: "RedeSociais",
                 column: "EventoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RedeSocials_PalestanteId",
-                table: "RedeSocials",
-                column: "PalestanteId");
+                name: "IX_RedeSociais_PalestranteId",
+                table: "RedeSociais",
+                column: "PalestranteId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -149,7 +150,7 @@ namespace ProAgil.Repository.Migrations
                 name: "PalestranteEventos");
 
             migrationBuilder.DropTable(
-                name: "RedeSocials");
+                name: "RedeSociais");
 
             migrationBuilder.DropTable(
                 name: "Eventos");
